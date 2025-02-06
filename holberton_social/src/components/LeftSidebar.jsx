@@ -4,6 +4,7 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
+  SignUpButton,
   SignOutButton,
 } from '@clerk/nextjs';
 
@@ -26,21 +27,28 @@ export default function Sidebar() {
           <HiHome className='w-7 h-7' />
           <span className='font-bold hidden xl:inline'>Home</span>
         </Link>
-        {/* Utilisation des composants Clerk sans <button> externe */}
-        <div className='w-48 h-9'>
+        {/* Conteneur pour les boutons d'authentification */}
+        <div className='w-48'>
           <SignedIn>
             <SignOutButton
-              className='bg-red-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-48 h-9 shadow-md hidden xl:inline font-semibold flex items-center justify-center'
+              className='bg-red-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-full h-9 shadow-md hidden xl:inline font-semibold flex items-center justify-center'
             >
               Sign Out
             </SignOutButton>
           </SignedIn>
           <SignedOut>
-            <SignInButton
-              className='bg-red-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-48 h-9 shadow-md hidden xl:inline font-semibold flex items-center justify-center'
-            >
-              Sign In
-            </SignInButton>
+            <div className="flex flex-col gap-2">
+              <SignInButton
+                className='bg-red-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-full h-9 shadow-md hidden xl:inline font-semibold flex items-center justify-center'
+              >
+                Sign In
+              </SignInButton>
+              <SignUpButton
+                className='bg-red-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-full h-9 shadow-md hidden xl:inline font-semibold flex items-center justify-center'
+              >
+                Sign Up
+              </SignUpButton>
+            </div>
           </SignedOut>
         </div>
       </div>
