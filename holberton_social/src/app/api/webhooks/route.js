@@ -1,5 +1,7 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
+import { clerkClient } from '@clerk/nextjs/server';
+
 
 export async function POST(req) {
   // 1. Récupérer la clé secrète depuis les variables d'environnement
@@ -45,26 +47,52 @@ export async function POST(req) {
   }
 
   // 5. Traiter l'événement reçu
-  const { id } = evt.data;
-  const eventType = evt.type;
+  const { id } = evt?.data;
+  const eventType = evt?.type;
   console.log(`Webhook reçu - ID: ${id}, Type: ${eventType}`);
   console.log('Corps du webhook:', body);
 
-  switch (eventType) {
-    case 'user.created':
-      console.log('A new user has been created');
-      
-      break;
-    case 'user.updated':
-      console.log('A user has been updated');
-      // Code pour mettre à jour les infos de l'utilisateur
-      break;
-    case 'user.deleted':
-      console.log('A user has been deleted');
-      // Code pour supprimer l'utilisateur ou gérer cette logique
-      break;
-    default:
-      console.log('Unhandled event type:', eventType);
+  if (eventType === 'user.created' || eventType === 'user.updated') {
+    const { id, first_name, last_name, image_url, email_addresses, username } =
+      evt?.data;
+    try {
+      const user = await createOrUpdateUser(
+        id,
+        first_name,
+        last_name,
+        image_url,
+        email_addresses,
+        username
+      );
+      if (user || eventType === 'user.created') {
+        try {
+          await clerkClient.users.updateUserMetadata(id, {
+            publicMetadata: {
+              userMongoId: user._id,
+            },
+          });
+        } catch (error) {
+          console.log('Error updating user metadata:', error);
+        }
+      }
+    } catch (error) {
+      console.log('Error creating or updating user:', error);
+      return new Response('Error occured', {
+        status: 400,
+      });
+    }
+  }
+
+  if (eventType === 'user.deleted') {
+    const { id } = evt?.data;
+    try {
+      await deleteUser(id);
+    } catch (error) {
+      console.log('Error deleting user:', error);
+      return new Response('Error occured', {
+        status: 400,
+      });
+    }
   }
 
   // 6. Répondre à Clerk pour indiquer que le webhook a bien été traité
