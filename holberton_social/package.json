@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "type": "module",
   "dependencies": {
     "@clerk/nextjs": "^6.11.1",
     "framer-motion": "^12.4.0",
