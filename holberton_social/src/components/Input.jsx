@@ -17,6 +17,8 @@ export default function Input() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileUploading, setFileUploading] = useState(false);
   const filePickRef = useRef(null);
+  const [text, setText] = useState('');
+  const [postLoading, setPostLoading] = useState(false);
 
   if (!isSignedIn || !isLoaded) {
     return null;
@@ -110,12 +112,12 @@ export default function Input() {
         )}
 
         <div className='flex items-center justify-between pt-2.5'>
-          {/* Icône pour uploader une image */}
+          
           <HiOutlinePhotograph
             className='h-10 w-10 p-2 text-sky-500 hover:bg-sky-100 rounded-full cursor-pointer'
             onClick={() => filePickRef.current.click()}
           />
-          {/* Icône pour uploader un PDF */}
+          
           <HiOutlineDocumentText
             className='h-10 w-10 p-2 text-red-500 hover:bg-red-100 rounded-full cursor-pointer'
             onClick={() => filePickRef.current.click()}
