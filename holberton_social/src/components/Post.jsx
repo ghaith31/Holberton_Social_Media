@@ -45,7 +45,8 @@ export default function Post({ post }) {
                 rel="noopener noreferrer"
                 className='flex items-center text-blue-500 underline mb-2'
               >
-                <HiOutlineDocumentText className='h-6 w-6 mr-1' />
+                <HiOutlineDocumentText style={{ fontSize: '52px' }} className='mr-1' />
+
                 {post.image.split('/').pop()}
               </a>
             ) : (
