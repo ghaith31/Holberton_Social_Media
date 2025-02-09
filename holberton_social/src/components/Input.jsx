@@ -100,6 +100,7 @@ export default function Input() {
     setText('');
     setSelectedFile(null);
     setFileUrl(null);
+    location.reload();
   };
 
   return (

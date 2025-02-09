@@ -32,12 +32,12 @@ export default function RootLayout({ children }) {
             <Loader />
           </ClerkLoading>
           <ClerkLoaded>
-          <div className='flex justify-between max-w-6xl mx-auto'>
+          <div className='flex justify-between  mx-auto'>
               <div className='hidden sm:inline border-r h-screen sticky top-0'>
                 <LeftSidebar />
               </div>
               <div className='w-2xl flex-1'>{children}</div>
-              <div className='lg:flex-col p-1 h-screen border-l hidden lg:flex w-[24rem]'>
+              <div className='lg:flex-col p-1 h-screen border-l hidden lg:flex w-[34rem]'>
                 <RightSidebar />
               </div>
             </div>
