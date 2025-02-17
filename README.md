@@ -83,6 +83,6 @@ This project is licensed under the MIT License.
 
 For any questions or inquiries, please contact:
 
-- **Your Name** – gharsallighaith31@gmail.com
+- **Name** – gharsallighaith31@gmail.com
 
 
