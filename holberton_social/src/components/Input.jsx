@@ -15,9 +15,7 @@ export default function Input() {
   const [postLoading, setPostLoading] = useState(false);
   const filePickRef = useRef(null);
 
-  if (!isSignedIn || !isLoaded) {
-    return null;
-  }
+  
 
   console.log("User metadata:", user.publicMetadata);
 
@@ -102,7 +100,9 @@ export default function Input() {
     setFileUrl(null);
     location.reload();
   };
-
+  if (!isSignedIn || !isLoaded) {
+    return null;
+  }
   return (
     <div className='flex border-b border-gray-200 p-3 space-x-3 w-full'>
       <img
