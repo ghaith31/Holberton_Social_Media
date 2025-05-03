@@ -4,7 +4,8 @@ import LeftSidebar from '@/components/LeftSidebar';
 import RightSidebar from '@/components/RightSidebar';
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from '@clerk/nextjs';
 import Loader from '@/components/Loader';
-
+import SessionWrapper from '@/components/SessionWrapper';
+import CommentModal from '@/components/CommentModal';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
