@@ -17,7 +17,7 @@ export default function Input() {
 
   
 
-  console.log("User metadata:", user.publicMetadata);
+  //console.log("User metadata:", user.publicMetadata);
 
   const addFileToPost = (e) => {
     const file = e.target.files[0];

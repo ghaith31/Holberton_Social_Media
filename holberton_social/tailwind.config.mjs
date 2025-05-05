@@ -15,3 +15,12 @@ export default {
   },
   plugins: [],
 };
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
+  },
+};
